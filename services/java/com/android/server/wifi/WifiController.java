@@ -37,6 +37,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.WorkSource;
 import android.provider.Settings;
 import android.util.Slog;
@@ -72,7 +73,8 @@ class WifiController extends StateMachine {
      * being enabled but not active exceeds the battery drain caused by
      * re-establishing a connection to the mobile data network.
      */
-    private static final long DEFAULT_IDLE_MS = 15 * 60 * 1000; /* 15 minutes */
+    private static final long DEFAULT_IDLE_MS = SystemProperties.getInt(
+            "wifi.idle_ms", 15 * 60 * 1000);
 
     /**
      * See {@link Settings.Global#WIFI_REENABLE_DELAY_MS}.  This is the default value if a
